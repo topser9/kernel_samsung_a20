@@ -721,17 +721,110 @@ static int __init init_ufc_table_dt(struct exynos_cpufreq_domain *domain,
 
 			if (freq == CPUFREQ_ENTRY_INVALID)
 				continue;
-
+			if(ufc->info.ctrl_type==0)
+			{
+				if(freq==2496000||freq==2392000||freq==2288000)
+					ufc->info.freq_table[index].limit_freq=1898000;
+				if(freq==2184000)
+					ufc->info.freq_table[index].limit_freq=1794000;
+				if(freq==2080000||freq==1976000)
+					ufc->info.freq_table[index].limit_freq=1690000;
+				if(freq==1872000||freq==1768000)
+					ufc->info.freq_table[index].limit_freq=1248000;
+				if(freq==520000)
+					ufc->info.freq_table[index].limit_freq=757000;
+				if(freq==312000||freq==208000)
+					ufc->info.freq_table[index].limit_freq=676000;
+				if(freq==208000)
+					ufc->info.freq_table[index].limit_freq=546000;
+			}
+			if(ufc->info.ctrl_type==2){
+				if(freq==2496000||freq==2392000||freq==2288000)
+					ufc->info.freq_table[index].limit_freq=1898000;
+				if(freq==2184000)
+					ufc->info.freq_table[index].limit_freq=1794000;
+				if(freq==2080000||freq==1976000)
+					ufc->info.freq_table[index].limit_freq=1690000;
+				if(freq==1872000||freq==1768000)
+					ufc->info.freq_table[index].limit_freq=1586000;
+				if(freq==1664000)
+					ufc->info.freq_table[index].limit_freq=1482000;
+				if(freq==1560000)
+					ufc->info.freq_table[index].limit_freq=1352000;
+				if(freq==1352000)
+					ufc->info.freq_table[index].limit_freq=1248000;
+				if(freq==1144000)
+					ufc->info.freq_table[index].limit_freq=1144000;
+				if(freq==1352000)
+					ufc->info.freq_table[index].limit_freq=1014000;
+				if(freq==936000)
+					ufc->info.freq_table[index].limit_freq=902000;
+				if(freq==728000)
+					ufc->info.freq_table[index].limit_freq=839000;
+				if(freq==520000)
+					ufc->info.freq_table[index].limit_freq=757000;
+				if(freq==312000)
+					ufc->info.freq_table[index].limit_freq=676000;
+				if(freq==208000)
+					ufc->info.freq_table[index].limit_freq=546000;
+			}
 			for (c_index = 0; c_index < size / 2; c_index++) {
+				
 				if (freq <= table[c_index].master_freq)
 					ufc->info.freq_table[index].limit_freq = table[c_index].limit_freq;
-
 				if (freq >= table[c_index].master_freq)
 					break;
+				//pr_info("Master_freq : %u kHz - table[c_index].limit_freq : %u kHz  topser99dt\n",table[c_index].master_freq,table[c_index].limit_freq);	
 			}
-			pr_info("Master_freq : %u kHz - limit_freq : %u kHz\n",
-					ufc->info.freq_table[index].master_freq,
-					ufc->info.freq_table[index].limit_freq);
+			if(ufc->info.ctrl_type==0)
+			{
+				if(freq==2496000||freq==2392000||freq==2288000)
+					ufc->info.freq_table[index].limit_freq=1898000;
+				if(freq==2184000)
+					ufc->info.freq_table[index].limit_freq=1794000;
+				if(freq==2080000||freq==1976000)
+					ufc->info.freq_table[index].limit_freq=1690000;
+				if(freq==1872000||freq==1768000)
+					ufc->info.freq_table[index].limit_freq=1248000;
+				if(freq==520000)
+					ufc->info.freq_table[index].limit_freq=757000;
+				if(freq==312000||freq==208000)
+					ufc->info.freq_table[index].limit_freq=676000;
+				if(freq==208000)
+					ufc->info.freq_table[index].limit_freq=546000;
+			}
+			if(ufc->info.ctrl_type==2){
+				if(freq==2496000||freq==2392000||freq==2288000)
+					ufc->info.freq_table[index].limit_freq=1898000;
+				if(freq==2184000)
+					ufc->info.freq_table[index].limit_freq=1794000;
+				if(freq==2080000||freq==1976000)
+					ufc->info.freq_table[index].limit_freq=1690000;
+				if(freq==1872000||freq==1768000)
+					ufc->info.freq_table[index].limit_freq=1586000;
+				if(freq==1664000)
+					ufc->info.freq_table[index].limit_freq=1482000;
+				if(freq==1560000)
+					ufc->info.freq_table[index].limit_freq=1352000;
+				if(freq==1352000)
+					ufc->info.freq_table[index].limit_freq=1248000;
+				if(freq==1144000)
+					ufc->info.freq_table[index].limit_freq=1144000;
+				if(freq==1352000)
+					ufc->info.freq_table[index].limit_freq=1014000;
+				if(freq==936000)
+					ufc->info.freq_table[index].limit_freq=902000;
+				if(freq==728000)
+					ufc->info.freq_table[index].limit_freq=839000;
+				if(freq==520000)
+					ufc->info.freq_table[index].limit_freq=757000;
+				if(freq==312000)
+					ufc->info.freq_table[index].limit_freq=676000;
+				if(freq==208000)
+					ufc->info.freq_table[index].limit_freq=546000;
+			}
+			pr_info("freq : %u kHz - ufc->info.freq_table[index].limit_freq : %u kHz topser99dt\n", freq,ufc->info.freq_table[index].limit_freq);
+
 		}
 		kfree(table);
 	}
